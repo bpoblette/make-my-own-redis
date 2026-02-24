@@ -68,7 +68,15 @@ int main()
         {
             continue;
         }
-        do_something(connfd);
+        while (true)
+        {
+            int32_t err = one_request(connfd);
+            if (err)
+            {
+                break;
+            }
+        }
+
         close(connfd);
     }
 
